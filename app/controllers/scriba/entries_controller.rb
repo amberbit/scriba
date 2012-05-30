@@ -53,6 +53,6 @@ class Scriba::EntriesController < Scriba::ApplicationController
       end
     end
 
-    @entries = @entries.paginate(page: params[:page], per_page: 200)
+    @entries = @entries.paginate(page: params[:page], per_page: 10)
   end
 end

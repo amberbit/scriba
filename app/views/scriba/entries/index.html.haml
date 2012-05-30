@@ -1,6 +1,6 @@
 %h1
   Log entries
-  =# "(#{@entries.total_entries} in total)"
+  = "(#{@entries.total_entries} in total)"
 
 
 = form_tag entries_path, method: "get" do
@@ -27,14 +27,14 @@
 
   %h3 Log entries
 
-=# will_paginate @entries
+= will_paginate @entries
 
 %table.table.table-striped
   %thead
     %tr
-      %th
+      %th.overview
         Request overview
-      %th
+      %th.timestamp
         Timestamp
       %th
         Type
@@ -57,4 +57,4 @@
         %td= entry.severity
         %td= truncate(entry.message, length: 1000)
 
-=# will_paginate @entries
+= will_paginate @entries

@@ -3,12 +3,19 @@
 <head>
   <title>Scriba</title>
   <%= stylesheet_link_tag    "scriba/application", :media => "all" %>
-  <%= javascript_include_tag "scriba/application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
   <div id="container">
     <%= yield %>
   </div>
-</body>
+  <div id="footer">
+    <div id="shameless">
+      Brought to you by <%= link_to "AmberBit", "http://amberbit.com" %> Ruby on Rails web development team.
+      <br/>
+      2010-2011 &copy; Hubert Łępicki &lt;hubert.lepicki@amberbit.com&gt;
+    </div>
+    <%= link_to image_tag("http://amberbit.com/images/logo.png"), "http://amberbit.com" %>
+  </div>
 </html>
