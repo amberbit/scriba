@@ -49,12 +49,13 @@
           = link_to entry.request_id.to_s, entry.request
           %br
           User:
-          = link_to(entry.user.id, entry.user_path) if entry.request && entry.user_path != ""
+          = link_to(entry.user.id, entry.user_path, target: "_parent") if entry.request && entry.user_path != ""
           %br
           Page:
-          = link_to(entry.request.path, entry.request.path) if entry.request && entry.request.path
+          = link_to(entry.request.path, entry.request.path, target: "_parent") if entry.request && entry.request.path
         %td= entry.created_at.to_s(:db)
         %td= entry.severity
         %td= truncate(entry.message, length: 1000)
 
+%div{style: "clear: both"}
 = will_paginate @entries

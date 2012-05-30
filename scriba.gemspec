@@ -7,11 +7,11 @@ require "scriba/version"
 Gem::Specification.new do |s|
   s.name        = "scriba"
   s.version     = Scriba::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Scriba."
-  s.description = "TODO: Description of Scriba."
+  s.authors     = ["Hubert Lepicki"]
+  s.email       = ["hubert.lepicki@amberbit.com"]
+  s.homepage    = "http://github.com/amberbit/scriba"
+  s.summary     = "Scriba is extensive logger that logs everything in mongodb."
+  s.description = "You probably do not want to use on production systems just yet."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
@@ -21,6 +21,4 @@ Gem::Specification.new do |s|
   s.add_dependency "haml"
   s.add_dependency "will_paginate"
   s.add_dependency "will_paginate_mongoid"
-
-  # s.add_dependency "jquery-rails"
 end

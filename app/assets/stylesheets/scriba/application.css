@@ -185,8 +185,6 @@ ul, ul li {
 
 ul li { display: inline }
 
-ul { text-align: right; position: relative; top: -37px; }
-
 body { padding-top: 20px; padding-bottom: 20px}
 
 #footer { width: 960px; margin: auto; }
