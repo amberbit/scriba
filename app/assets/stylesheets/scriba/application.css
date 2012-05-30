@@ -255,7 +255,6 @@ table th {
   border-style: inset;
   border-color: #eee;
   background-color: white;
-  -moz-border-radius: ;
 }
 table td {
   border-width: 1px;
@@ -263,7 +262,6 @@ table td {
   border-style: inset;
   border-color: #eee;
   background-color: white;
-  -moz-border-radius: ;
 }
 
 th.overview {
