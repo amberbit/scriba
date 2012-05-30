@@ -59,7 +59,6 @@ module Dummy
     config.assets.version = '1.0'
 
     config.middleware.use "Scriba::Middleware"
-
     config.logger = Scriba::Logger.new(Rails.root.join("log", Rails.env + ".log"), 3)
     Mongoid.logger=Logger.new('/dev/null')
   end
