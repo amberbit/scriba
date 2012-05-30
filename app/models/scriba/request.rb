@@ -6,13 +6,18 @@ module Scriba
     field :response_headers, type: Hash
     field :response_body, type: String
     field :user_id, type: String
-  #    has_many :entries, class_name: "Scriba::Entry"
+    has_many :entries, class_name: "Scriba::Entry"
 
     def self.log(env)
       Thread.current[:scriba_request_id] = nil
       Thread.current[:scriba_user_id] = nil
 
-      request = create!(env: prepare_hash(env))
+      request = new(env: prepare_hash(env))
+
+      Thread.current[:in_scriba] = !!(request.env["PATH_INFO"] =~ /scriba/)
+
+      request.save unless Thread.current[:in_scriba]
+
       Thread.current[:scriba_request_id] = request.id
       Thread.current[:scriba_user_id] = request.user.try(:id)
 
@@ -22,7 +27,7 @@ module Scriba
                                 response_body: if resp[2].respond_to?(:body) && resp[2].body.try(:encoding).try(:name) == "UTF-8"
                                                  resp[2].body
                                                else
-                                                 resp[2].to_s
+                                                 nil #resp[2].to_s
                                                end,
                                 user_id: request.user.try(:id)
       resp

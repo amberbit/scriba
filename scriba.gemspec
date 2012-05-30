@@ -17,7 +17,10 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2.2"
-  s.add_dependency "mongoid", "~> 3.0.0.rc"
+  s.add_dependency "mongoid", "~> 2.4.10"
+  s.add_dependency "haml"
+  s.add_dependency "will_paginate"
+  s.add_dependency "will_paginate_mongoid"
 
   # s.add_dependency "jquery-rails"
 end

@@ -57,6 +57,11 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use "Scriba::Middleware"
+
+    config.logger = Scriba::Logger.new(Rails.root.join("log", Rails.env + ".log"), 3)
+    Mongoid.logger=Logger.new('/dev/null')
   end
 end
 

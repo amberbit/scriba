@@ -1,0 +1,34 @@
+%h1 Request log
+
+%h3 Request/cookie/session details
+= debug @request.env
+
+%h3 Response status
+= @request.response_status
+
+%h3 Response headers
+= @request.response_headers
+
+%h3 Response body
+%pre
+  = @request.response_body
+
+%h3 Log entries
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        Timestamp
+      %th
+        Type
+      %th
+        Message
+
+  %tbody
+    - @request.entries.each do |entry|
+      %tr
+        %td= entry.created_at.to_s(:db)
+        %td= entry.severity
+        %td= entry.message
+

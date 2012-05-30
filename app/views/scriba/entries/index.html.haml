@@ -1,0 +1,60 @@
+%h1
+  Log entries
+  =# "(#{@entries.total_entries} in total)"
+
+
+= form_tag entries_path, method: "get" do
+  = text_field_tag :from, @from.to_s, placeholder: "YYYY-MM-DD HH:MM:SS"
+  = text_field_tag :to, @to.to_s, placeholder: "YYYY-MM-DD HH:MM:SS"
+  = text_field_tag :user_id, @user_id, placeholder: "User ID"
+  = select_tag :severity, options_for_select([["Any Severity", nil], ["INFO", "INFO"], ["DEBUG", "DEBUG"], ["WARN", "WARN"], ["ERROR", "ERROR"], ["FATAL", "FATAL"]], @severity)
+  = submit_tag "Filter results"
+
+- if @report.present?
+  %h3 Overall report
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          Count
+        %th
+          Message(s)
+    %tbody
+      - @report.each do |item|
+        %tr
+          %td= item["value"]["count"].to_i
+          %td= item["_id"]
+
+  %h3 Log entries
+
+=# will_paginate @entries
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        Request overview
+      %th
+        Timestamp
+      %th
+        Type
+      %th
+        Message
+
+  %tbody
+    - @entries.each do |entry|
+      %tr
+        %td
+          ID:
+          = link_to entry.request_id.to_s, entry.request
+          %br
+          User:
+          = link_to(entry.user.id, entry.user_path) if entry.request && entry.user_path != ""
+          %br
+          Page:
+          = link_to(entry.request.path, entry.request.path) if entry.request && entry.request.path
+        %td= entry.created_at.to_s(:db)
+        %td= entry.severity
+        %td= truncate(entry.message, length: 1000)
+
+=# will_paginate @entries
