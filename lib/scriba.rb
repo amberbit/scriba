@@ -8,5 +8,5 @@ require "will_paginate_mongoid"
 require "haml"
 
 module Scriba
-  mattr_accessor :user_finder, :user_path_finder
+  mattr_accessor :user_finder, :user_path_finder, :auth_handler
 end

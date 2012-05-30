@@ -27,7 +27,7 @@ module Scriba
                                 response_body: if resp[2].respond_to?(:body) && resp[2].body.try(:encoding).try(:name) == "UTF-8"
                                                  resp[2].body
                                                else
-                                                 nil #resp[2].to_s
+                                                 resp[2].to_s
                                                end,
                                 user_id: request.user.try(:id)
       resp
