@@ -34,7 +34,14 @@ module Scriba
     end
 
     def self.prepare_hash(hash)
-      return hash unless hash.kind_of?(Hash)
+      unless hash.kind_of?(Hash)
+        begin
+          BSON::serialize(hash)
+          return hash
+        rescue
+          return hash.to_s
+        end
+      end
 
       return Hash[
         hash.select {
