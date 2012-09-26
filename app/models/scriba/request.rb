@@ -25,7 +25,7 @@ module Scriba
       request.update_attributes response_status: resp[0],
                                 response_headers: resp[1],
                                 response_body: if resp[2].respond_to?(:body) && resp[2].body.try(:encoding).try(:name) == "UTF-8"
-                                                 resp[2].body
+                                                 resp[2].body if Scriba.log_response_body
                                                else
                                                  # resp[2].to_s
                                                end,
